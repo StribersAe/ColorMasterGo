@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorMaster GO | Versión Definitiva 2.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1219;
+            color: #e8ecf4;
+            line-height: 1.65;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* HERO */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.18), transparent 50%),
+                        linear-gradient(160deg, #0f1219 0%, #1a1f2e 100%);
+            padding: 4rem 0;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .hero-logo { width: 260px; margin-bottom: 1.2rem; }
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            letter-spacing: -1.2px;
+            background: linear-gradient(90deg, #67e8f9, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+        .version {
+            color: #c084fc;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #b4bdd0;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #7c3aed;
+            color: white;
+            padding: 1rem 2.4rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: 0.25s ease;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+        }
+        .cta-btn:hover { background: #6d28d9; transform: translateY(-2px); }
+        .hero-image {
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+        }
+
+        /* SECCIONES */
+        section { padding: 5rem 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #9ca3b8;
+            max-width: 640px;
+            margin: 0 auto 3rem;
+        }
+
+        /* PROBLEMA */
+        .problema { background: #131722; }
+        .problema-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+        .card {
+            background: #1c2233;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .card h3 { color: #f472b6; margin-bottom: 0.7rem; font-size: 1.35rem; }
+        .card p { color: #b4bdd0; }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.6rem;
+        }
+        .feature-card {
+            background: #1c2233;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+        .feature-card:hover { transform: translateY(-6px); border-color: rgba(103, 232, 249, 0.3); }
+        .feature-icon { font-size: 2.6rem; margin-bottom: 0.8rem; }
+        .feature-card h3 { color: #67e8f9; margin-bottom: 0.6rem; }
+        .feature-card p { color: #a8b3c9; font-size: 0.95rem; }
+
+        /* GALERÍA */
+        .galeria { background: #131722; }
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.6rem;
+        }
+        .producto-card {
+            background: #1c2233;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+        .producto-card:hover { transform: translateY(-5px); }
+        .producto-card img { height: 300px; object-fit: cover; width: 100%; }
+        .producto-info { padding: 1.4rem; text-align: center; }
+        .producto-info h3 { margin-bottom: 0.4rem; }
+        .producto-info p { color: #9ca3b8; font-size: 0.9rem; }
+
+        /* PRECIO */
+        .precio { text-align: center; }
+        .precio-box {
+            background: #1c2233;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .precio-valor {
+            font-size: 4.2rem;
+            font-weight: 800;
+            color: #facc15;
+            margin: 0.5rem 0 1rem;
+        }
+        .precio-desc { color: #b4bdd0; margin-bottom: 1.8rem; }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #22c55e;
+            color: white;
+            padding: 1.05rem 2.4rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: 0.25s;
+        }
+        .whatsapp-btn:hover { background: #16a34a; transform: translateY(-2px); }
+
+        footer {
+            background: #0c0f16;
+            padding: 1.8rem 0;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 860px) {
+            .hero-content, .problema-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.6rem; }
+            .hero-logo { margin-left: auto; margin-right: auto; }
+            .hero p { margin-left: auto; margin-right: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <img src="img/logo/logo-colormaster.png" alt="ColorMaster GO" class="hero-logo">
+                <h1>ColorMaster GO</h1>
+                <p class="version">Versión Definitiva 2.0</p>
+                <p>Cinco depósitos. Nuevas posibilidades. Un bolígrafo con sistema CMYK+W, botones redondos de selección de color y clip Twist-Lock. Ligero, resistente y pensado para el día a día en el aula.</p>
+                <a href="#precio" class="cta-btn">Ver precio y pedir</a>
+            </div>
+            <div>
+                <img src="img/productos/principal.jpg" alt="ColorMaster GO" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="problema">
+        <div class="container">
+            <h2 class="section-title">Menos peso. Menos pérdidas.</h2>
+            <p class="section-subtitle">Los estudiantes cargan demasiados útiles y se les pierden con facilidad. ColorMaster GO resuelve ambos problemas en un solo producto.</p>
+            <div class="problema-grid">
+                <div class="card">
+                    <h3>Mochilas más ligeras</h3>
+                    <p>En lugar de llevar varios bolígrafos, llevas uno solo con 5 colores (Cian, Magenta, Amarillo, Negro y Blanco). Menos peso todos los días.</p>
+                </div>
+                <div class="card">
+                    <h3>Se queda donde lo dejas</h3>
+                    <p>El clip Twist-Lock con traba de 90° evita que se caiga. Invisible para los compañeros, fácil de desbloquear para ti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Lo que lo hace diferente</h2>
+            <p class="section-subtitle">Versión Definitiva 2.0 · Diseñado para el uso real en el colegio.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Clip Twist-Lock</h3>
+                    <p>Traba mecánica de 90°. Seguro antirrobo que no se nota y es fácil de abrir solo para el dueño.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Cuerpo PC/ABS</h3>
+                    <p>Aleación de alta tenacidad que resiste pisotones y caídas accidentales del día a día en el aula.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>CMYK+W con botones</h3>
+                    <p>5 microdepósitos independientes. Selección con botones redondos. Mezcla seca por capilaridad (tonos pasteles reales).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="galeria">
+        <div class="container">
+            <h2 class="section-title">Elige tu versión</h2>
+            <p class="section-subtitle">Disponible en Morado Royale y Negro Mate, con empaque ecológico de cartón dúplex.</p>
+            <div class="galeria-grid">
+                <div class="producto-card">
+                    <img src="img/productos/morado.png" alt="Morado Royale">
+                    <div class="producto-info">
+                        <h3>Morado Royale</h3>
+                        <p>Acabado elegante con botones de color visibles.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <img src="img/productos/negro.png" alt="Negro Mate">
+                    <div class="producto-info">
+                        <h3>Negro Mate</h3>
+                        <p>Diseño discreto y profesional. Versión 2.0.</p>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <img src="img/productos/blister.png" alt="Empaque ecológico">
+                    <div class="producto-info">
+                        <h3>Empaque Ecológico</h3>
+                        <p>Cartón dúplex slim con ventana troquelada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRECIO -->
+    <section class="precio" id="precio">
+        <div class="container">
+            <h2 class="section-title">Precio para el bolsillo escolar</h2>
+            <div class="precio-box">
+                <p style="color:#c084fc; font-weight:600; letter-spacing:0.5px;">VERSIÓN DEFINITIVA 2.0</p>
+                <div class="precio-valor">S/ 18.00</div>
+                <p class="precio-desc">Un solo bolígrafo con 5 colores, clip seguro y cuerpo resistente. Menos peso en la mochila, más creatividad todos los días.</p>
+                <a href="https://wa.me/51900235708?text=Hola%2C%20quiero%20pedir%20el%20ColorMaster%20GO%20por%20S%2F%2018" class="whatsapp-btn" target="_blank" rel="noopener">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ColorMaster GO · Tu creatividad no tiene límites.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
